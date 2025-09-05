@@ -6,9 +6,10 @@ public class SubArrays {
         int count = 0;
         for (int i = 0; i < arr.length; i++){
             for (int j = i; j < arr.length; j++){
-                System.out.print("( ");
+                System.out.print(" (");
                 for (int k = i; k <= j; k++){ //print
-                    System.out.print(arr[k] + " "); //subarray
+                    System.out.print(arr[k]); //subarray
+                    if (k < j) System.out.print(", ");
                 }
                 System.out.print(") ");
                 count++;
