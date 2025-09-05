@@ -62,9 +62,35 @@ public class SumSubArrays {
         System.out.println("Minimum subarray sum = " + minSum);
     }
 
+    //max and min subarray sum with the help of kadanes algorithm
+    //time complexity for max is O(n)
+    public static void kadanesBoth(int arr[]) {
+    int maxSum = Integer.MIN_VALUE;
+    int minSum = Integer.MAX_VALUE;
+    int currentMax = 0;
+    int currentMin = 0;
+
+    for (int i = 0; i < arr.length; i++) {
+        // For max subarray sum
+        currentMax += arr[i];
+        if (currentMax < 0) currentMax = 0;
+        maxSum = Math.max(maxSum, currentMax);
+
+        // For min subarray sum
+        currentMin += arr[i];
+        if (currentMin > 0) currentMin = 0;
+        minSum = Math.min(minSum, currentMin);
+    }
+
+    System.out.println("Max subarray sum is : " + maxSum);
+    System.out.println("Min subarray sum is : " + minSum);
+}
+
     public static void main(String []args) {
         int arr[] = {2, 4, 6, 8, 10};
+        int arr1[] = {-2, -3, 4, -1, -2, 1, 5, -3};
         //printSubArraysSum(arr);
-        prefixSubArraysSum(arr);
+        //prefixSubArraysSum(arr);
+        kadanesBoth(arr1);
     }
 }
