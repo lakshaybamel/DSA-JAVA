@@ -64,6 +64,9 @@ public class SumSubArrays {
 
     //max and min subarray sum with the help of kadanes algorithm
     //time complexity for max is O(n)
+    /*Below code 
+    -> Dont give correct max sum of SubArray when all array elements are -ve
+    -> Dont give correct min sum of SubArray when all array elements are +ve*/
     public static void kadanesBoth(int arr[]) {
     int maxSum = Integer.MIN_VALUE;
     int minSum = Integer.MAX_VALUE;
@@ -86,11 +89,40 @@ public class SumSubArrays {
     System.out.println("Min subarray sum is : " + minSum);
 }
 
+/*
+- Time Complexity: O(n) — single pass through the array
+- Space Complexity: O(1) — no extra storage needed
+- Edge Case Handling: Works even when all elements are negative or positive*/
+public static void kadanesAnyArray(int arr[]) {
+    int currentMax = arr[0];
+    int maxSum = arr[0];
+    int currentMin = arr[0];
+    int minSum = arr[0];
+
+    for (int i = 1; i < arr.length; i++) {
+        // Update current max and overall max
+        currentMax = Math.max(arr[i], currentMax + arr[i]);
+        maxSum = Math.max(maxSum, currentMax);
+
+        // Update current min and overall min
+        currentMin = Math.min(arr[i], currentMin + arr[i]);
+        minSum = Math.min(minSum, currentMin);
+    }
+
+    System.out.println("Max subarray sum is : " + maxSum);
+    System.out.println("Min subarray sum is : " + minSum);
+}
+
     public static void main(String []args) {
         int arr[] = {2, 4, 6, 8, 10};
-        int arr1[] = {-2, -3, 4, -1, -2, 1, 5, -3};
+        int arr1[] = {-2, -3, 4, -1, -2, 1, 5, -3}; //mix array
+        int arr2[] = {-2, -5, -3, -9, -12, -6}; //all negative
+        int arr3[] = {2, 11, 8, 1, 12, 6, 3}; //all positive
         //printSubArraysSum(arr);
         //prefixSubArraysSum(arr);
-        kadanesBoth(arr1);
+        //kadanesBoth(arr1);
+        kadanesAnyArray(arr1);
+        kadanesAnyArray(arr2);
+        kadanesAnyArray(arr3);
     }
 }
