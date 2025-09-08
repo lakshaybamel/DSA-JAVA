@@ -1,13 +1,19 @@
 public class BubbleSort {
     public static void sort(int[] arr) {
         for (int turn = 0; turn < arr.length-1; turn++){
+            int swapped = 0; //flag using int
             for (int j = 0; j < arr.length-1-turn; j++){
                 if (arr[j] > arr[j+1]){
-                    //swap
+                    //swap arr[j] and arr[j+1]
                     int temp = arr[j];
                     arr[j] = arr[j+1];
                     arr[j+1] = temp;
+                    swapped++; // mark swap happened
                 }
+            }
+            // If no swaps happened in this pass, array is sorted, break
+            if (swapped == 0){
+                    break;
             }
         }
     }
