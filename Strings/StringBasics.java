@@ -57,5 +57,15 @@ public class StringBasics {
         } else {
             System.out.println("Strings are not equal.");
         }
+
+        //subString
+        String st = "HelloWorld";
+        System.out.println(st.substring(0, 4));
+
+        //compareTo and CompareToIgnoreCase - lexicographic
+        String st1 = "Apple";
+        String st2 = "apple";
+        System.out.println(st1.compareTo(st2));
+        System.out.println(st1.compareToIgnoreCase(st2));
     }
 }
